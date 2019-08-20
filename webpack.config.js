@@ -14,6 +14,7 @@ module.exports = {
     extensions: ['.js', '.svg'],
     alias: {
       Assets: path.resolve(__dirname, 'src/images'),
+      Context: path.resolve(__dirname, 'src/app/contexts'),
     },
   },
   module: {

@@ -1,38 +1,42 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, withRouter } from 'react-router-dom';
 import { findIndex, find } from 'lodash';
 import TabsBar from 'SL_UI/tabsBar';
 
-import PagesContext from '../contexts/pagesContext';
+import PagesContext from 'Context/pagesContext';
+import Manage from './pages/manage';
+import WelcomePage from './pages/welcome';
 import './styles.scss';
 
-export default ({ location, match }) => {
-  const [selectedIndex, setSelectIndex] = useState(0);
-  const pages  = useContext(PagesContext);
-console.log(pages);
-  const links = pages.map(tab => <Link to={`${match.url}/${tab.id}`} key={tab.id}>{tab.title}</Link>);
-  
-  const currentIndex = find(pages, { id: match.params.id });
-
-  useEffect(() => {
-    if (currentIndex) {
-      setSelectIndex(currentIndex);
-    }
-  }, [])
+const WorkSpace = ({ location, match }) => {
+  const { pages, selected, setSelected }  = useContext(PagesContext);
+  const links = pages.map(page => <Link to={`${match.url}/${page.path}`} key={page.id}>{page.title}</Link>);
+  console.log(pages)
 
   return <div className='workspace'>
     <TabsBar
-      selectedIndex={selectedIndex}
-      onClick={(index) => setSelectIndex(index)}
+      selectedIndex={selected}
+      onClick={(index) => setSelected(index)}
       tabs={links}
     />
-    <Route path={`${match.path}/:id`} component={({ match }) => {
-      const page = find(pages, { id: match.params.id });
-      if (page) {
-        return page.component;
+    <Route path={`${match.path}/:type`} component={({ match }) => {
+      if (match.params.type) {
+        switch (match.params.type.toUpperCase()) {
+          case 'MANAGE':
+            return <Manage />
+            break;
+          case 'Asset':
+            break;
+          case 'MONITOR':
+            break;
+          default:
+            return <WelcomePage />;
+        }
       } else {
-        return <h3>404</h3>;
+        return <WelcomePage />;
       }
     }} />
   </div>
 }
+
+export default withRouter(props => <WorkSpace {...props}/>);
