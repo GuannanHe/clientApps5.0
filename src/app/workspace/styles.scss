@@ -3,4 +3,17 @@
     text-decoration: none;
     color: #000000;
   }
+
+  .tab {
+    .link {
+      margin-right: 5px;
+    }
+
+    .close {
+      margin-left: auto;
+      cursor: pointer;
+      font-weight: 400;
+      color: gray;
+    }
+  }
 }

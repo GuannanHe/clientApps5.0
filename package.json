@@ -36,7 +36,7 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
-    "SL_UI": "Snaplogic/SL_UI#96ef6d1",
+    "SL_UI": "Snaplogic/SL_UI.git#bd2194a",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
     "rc-tooltip": "^3.7.3",

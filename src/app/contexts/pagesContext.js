@@ -48,10 +48,20 @@ export const removePage = ({ id }) => {
   const pages = getPages();
   const indexToRemove = findIndex(pages, { id });
   pages.splice(indexToRemove, 1);
+  let selected = Math.max(indexToRemove - 1, 0);
 
-  storage.setItem('SnaplogicWorkspacePages', pages);
+  if (pages.length === 0) {
+    pages.push({
+      id: 'newPageid',
+      path: 'newPage',
+      title: 'Welcome to Snaplogic 5.0',
+    });
+  }
 
-  return pages;
+  storage.setItem('SnaplogicWorkspacePages', JSON.stringify(pages));
+  localStorage.setItem('SnaplogicWorkspacePageSeleted', selected);
+
+  return { pages, selected };
 }
 
 export const PagesProvider = PagesContext.Provider;

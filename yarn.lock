@@ -965,9 +965,9 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-SL_UI@Snaplogic/SL_UI#96ef6d1:
+SL_UI@Snaplogic/SL_UI.git#bd2194a:
   version "1.0.0"
-  resolved "git+ssh://git@github.com/Snaplogic/SL_UI.git#96ef6d1dff10fd2f315336fd5d5e00e4db3c003c"
+  resolved "git+ssh://git@github.com/Snaplogic/SL_UI.git#bd2194a10bf0e958953b17ad03cd6de4c5676dad"
   dependencies:
     react "^16.8.3"
     react-dnd "^7.0.2"

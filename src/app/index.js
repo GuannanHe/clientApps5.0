@@ -13,12 +13,15 @@ import Workspace from './workspace';
 import NavBar from './navBar';
 import './styles.scss';
 
-export default ({ match, location }) => {
+export default ({ match, location, history }) => {
   const [pages, setPages] = useState(getPages());
   const [selected, setSelected] = useState(getSelectedPage());
   
   const navBarConfig = [{
-    title: 'Asset'
+    title: 'Asset',
+    items: [{
+      title: 'Pipeline'
+    }]
   }, {
     title: 'Monitor'
   }, {
@@ -33,8 +36,16 @@ export default ({ match, location }) => {
   const contextValue = {
     pages,
     selected,
-    addPage: page => setPages(addPage(page)),
-    removePage: id => setPages(removePage(id)),
+    addPage: page => {
+      setPages(addPage(page));
+      history.push(`${match.url}/${page.path}`);
+    },
+    removePage: id => {
+      const result = removePage(id);
+      setPages(result.pages);
+      setSelected(result.selected);
+      history.push(`${match.url}/${result.pages[result.selected].path}`);
+    },
     setSelected: index => setSelected(setSelectedPage(index)),
   }
 
