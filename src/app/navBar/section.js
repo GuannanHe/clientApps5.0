@@ -1,11 +1,11 @@
 import React from 'react';
 
 import SectionItem from './sectionItem';
-import './styles.scss';
+import styles from  './styles.scss';
 
-export default ({ title, items=[], opened, open}) => {
-  return <div className={`section${opened ? ' open' : ''}`}>
-    <div className='title' onClick={open}>{title}</div>
+export default ({ title, items=[], opened, open, children}) => {
+  return <div className={`${styles.section} ${opened ? styles.open : ''}`}>
+    <div className={styles.title} onClick={open}>{title}</div>
     {
       items.map((item, index) => <SectionItem
         title={item.title}
@@ -14,5 +14,6 @@ export default ({ title, items=[], opened, open}) => {
         key={`${title}-${index}`}
       />)
     }
+    { children }
   </div>
 }

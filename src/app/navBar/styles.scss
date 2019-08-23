@@ -1,13 +1,11 @@
 .nav-bar {
-  position: fixed;
-  left: 0;
-  top: 200px;
-  height: 450px;
+  height: 100%;
   width: 50px;
   border: 1px solid #000000;
   border-radius: 0 10px 10px 0;
   display: flex;
   flex-direction: column;
+  // box-sizing: border-box;
 
   .section {
     transition: 0.5s all;
@@ -22,6 +20,15 @@
       text-align: center;
       font-size: 14px;
       cursor: pointer;
+      display: flex;
+      overflow: hidden;
+      white-space: nowrap;
+      justify-content: center;
+      text-overflow: ellipsis;
+
+      &.open {
+        background: lightgray;
+      }
     }
 
     .item {
@@ -30,10 +37,44 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      position: relative;
     }
 
     &.open {
       flex: 1;
     }
   }
+
+  .sub-level {
+    border: 1px solid #000000;
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    position: absolute;
+    top: 10px;
+    left: 100%;
+    height: calc(100% - 20px);
+    width: 0;
+    // padding-left: 10px;
+    // box-sizing: border-box;
+    transition: 0.5s all;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFFFFF;
+
+    &.open {
+      width: 150px;
+    }
+
+    .sub-menu-search {
+      margin: 3px 5px;
+    }
+
+    .sub-level-items {
+      flex: 1;
+      overflow: auto;
+      width: 100%;
+    }
+  } 
 }

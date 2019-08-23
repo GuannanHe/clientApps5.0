@@ -11,27 +11,27 @@ import { PagesProvider,
 import Header from './header';
 import Workspace from './workspace';
 import NavBar from './navBar';
-import './styles.scss';
+import { mainContainer } from './styles.scss';
 
 export default ({ match, location, history }) => {
   const [pages, setPages] = useState(getPages());
   const [selected, setSelected] = useState(getSelectedPage());
   
-  const navBarConfig = [{
-    title: 'Asset',
-    items: [{
-      title: 'Pipeline'
-    }]
-  }, {
-    title: 'Monitor'
-  }, {
-    title: 'Manage',
-    items: [{
-      title: 'Users',
-      icon: <img />,
-      to: 'manage/users',
-    }],
-  }];
+  // const navBarConfig = [{
+  //   title: 'Asset',
+  //   items: [{
+  //     title: 'Pipeline'
+  //   }]
+  // }, {
+  //   title: 'Monitor'
+  // }, {
+  //   title: 'Manage',
+  //   items: [{
+  //     title: 'Users',
+  //     icon: <img />,
+  //     to: 'manage/users',
+  //   }],
+  // }];
 
   const contextValue = {
     pages,
@@ -50,10 +50,9 @@ export default ({ match, location, history }) => {
   }
 
   return <PagesProvider value={ contextValue } >
-    <div className='main-container'>
+    <div className={mainContainer}>
       <Header />
       <Workspace />
-      <NavBar sections={navBarConfig} />
     </div>
   </PagesProvider>
 }

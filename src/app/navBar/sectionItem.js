@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PagesContext from 'Context/pagesContext';
 
-import './styles.scss';
+import styles from './styles.scss';
 
-export default ({ title, to, icon }) => {
+export default ({ title, to, icon, children }) => {
   const { pages, addPage, setSelected } = useContext(PagesContext);
   
   const onClick = () => {
@@ -12,7 +12,7 @@ export default ({ title, to, icon }) => {
     setSelected(pages.length);
   }
 
-  return <div className='item' onClick={onClick}>
+  return <div className={styles.item} onClick={onClick}>
     {title}
   </div>
 }

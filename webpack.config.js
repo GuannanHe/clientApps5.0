@@ -14,6 +14,7 @@ module.exports = {
     extensions: ['.js', '.svg'],
     alias: {
       Assets: path.resolve(__dirname, 'src/images'),
+      App: path.resolve(__dirname, 'src/app'),
       Context: path.resolve(__dirname, 'src/app/contexts'),
     },
   },
@@ -50,14 +51,26 @@ module.exports = {
         test: /\.scss$/i,
         include: [
           path.resolve(__dirname, 'src'),
-          path.resolve(__dirname, 'node_modules/SL_UI'),
         ],
         use: [
           'style-loader',
-          MiniCssExtractPlugin.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              },
+              localsConvention: 'camelCase',
+            },
+          },
           'sass-loader',
         ],
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        include: [path.resolve(__dirname, 'node_modules/SL_UI')],
       },
     ],
   },
