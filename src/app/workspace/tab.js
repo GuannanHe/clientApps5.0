@@ -1,15 +1,19 @@
 import React, { useContext } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import PagesContext from 'Context/pagesContext';
+import { useDispatch } from 'react-redux';
+
 import './styles.scss';
 
 const Tab = ({ page, match }) => {
-  const { removePage } = useContext(PagesContext);
+  const dispatch = useDispatch();
 
   return <div key={page.id}>
     <span onClick={(event) => {
       event.stopPropagation();
-      removePage({id: page.id})
+      dispatch({
+        type: 'REMOVE_PAGE',
+        payload: { id: page.id },
+      })
     }}>X</span>
     <Link to={`${match.url}/${page.path}`} >{page.title}</Link>
   </div>

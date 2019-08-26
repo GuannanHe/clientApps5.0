@@ -1,3 +1,3 @@
 import React from 'react';
 
-export default () => <div>pipeline</div>;
+export default () => <div>pipeline monitor</div>;

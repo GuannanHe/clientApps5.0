@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import PagesContext from 'Context/pagesContext';
 import { Icon, TextField } from 'SL_UI';
 import { filter } from 'lodash';
 
@@ -18,7 +17,6 @@ const ITEMS = (() => {
 })();
 
 export default ({ title, id, selected, openMenu, dataUrl }) => {
-  const { pages, addPage, setSelected } = useContext(PagesContext);
   const [ searchInput, setSearchInput] = useState('');
   const [ items, setItems ] = useState([]);
   const postionRef = useRef(null);

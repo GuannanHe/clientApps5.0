@@ -21,15 +21,6 @@ export default ({ sections = [] }) => {
   }, [opened])
 
   return <div className={styles.navBar}>
-    {/*sections.map((section, index) => (
-      <Section
-        title={section.title}
-        items={section.items}
-        opened={index === opened}
-        open={() => setOpend(index)}
-        key={`${section.title}-${index}`}
-      />
-    )) */}
     <Section
       title={'Asset'}
       opened={opened == 0}
@@ -63,11 +54,11 @@ export default ({ sections = [] }) => {
       key={`Manage-${1}`}
     />
     <Section
-      title={'Moniter'}
+      title={'Monitor'}
       items={[{
         title: 'Pipe',
         icon: <img />,
-        to: 'moiter/pipe',
+        to: 'monitor/pipeline',
       }]}
       opened={2 === opened}
       open={() => setOpend(2)}

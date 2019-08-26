@@ -1,13 +1,13 @@
-import React, { useState， useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import {
   ReflexContainer,
   ReflexSplitter,
   ReflexElement
-} from 'react-reflex'
+} from 'react-reflex';
 
-import './styles.scss'
+import './styles.scss';
 
-const Component = ({ pageContent, detailPanel, detailPanelHeight }) => {
+const Component = ({ pageContent, detailPanel }) => {
   const [detailComponent, setDetailComponent] = useState(null);
   const [detailPanelHeight, setDetailPanelHeight] = useState(0);
   const [flex, setFlex] = useState(1);
@@ -44,4 +44,4 @@ const Component = ({ pageContent, detailPanel, detailPanelHeight }) => {
   </div>
 }
 
-export default ({ pageContent, detailPanel }) => <Component { ...props } />
+export default props => <Component { ...props } />
