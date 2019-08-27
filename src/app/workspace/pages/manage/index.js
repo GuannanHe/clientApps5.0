@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Redirect } from 'react-router-dom';
 
 import Users from './users';
 
@@ -10,10 +10,10 @@ const Manage = ({ match }) => {
           case 'USERS':
             return <Users />;
           default:
-            return <div>manage</div>;
+            return <Redirect to='/app/welcome_page' />;
         }
       } else {
-        return <div>manage</div>;
+        return <Redirect to='/app/welcome_page' />;
       }
     }} />
 }

@@ -4,8 +4,12 @@ import { findIndex } from 'lodash';
 const storage = window.localStorage;
 
 const initState = {
-  pages: [],
-  selectedPage: '',
+  pages: [{
+    id: 'welcome_page_id',
+    path: 'welcome_page',
+    title: 'Welcome to Snaplogic 5.0',
+  }],
+  selectedPage: 0,
 }
 
 export const getPages = () => {
@@ -54,8 +58,8 @@ export default function pages(state = initState, action = {}) {
 
       if (toRemove.length === 0) {
         toRemove.push({
-          id: 'newPageid',
-          path: 'newPage',
+          id: 'welcome_page_id',
+          path: 'welcome_page',
           title: 'Welcome to Snaplogic 5.0',
         });
       }
@@ -63,7 +67,7 @@ export default function pages(state = initState, action = {}) {
       storage.setItem('SnaplogicWorkspacePages', JSON.stringify(toRemove));
       localStorage.setItem('SnaplogicWorkspacePageSeleted', selectedPage);
 
-      return { ...state, pages, selectedPage };
+      return { ...state, pages: toRemove, selectedPage };
     case 'FETCH_PAGES':
       return { ...state, pages: getPages() };
     case 'FETCH_SELECTED_PAGES':

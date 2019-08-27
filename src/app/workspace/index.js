@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Route, Link, withRouter, Redirect } from 'react-router-dom';
 import { findIndex, find } from 'lodash';
 import TabsBar from 'SL_UI/tabsBar';
@@ -14,7 +14,7 @@ import WelcomePage from './pages/welcome';
 import './styles.scss';
 import styles from './styles.scss';
 
-const WorkSpace = ({ location, match }) => {
+const WorkSpace = ({ location, match, history }) => {
   const dispatch = useDispatch();
   const pages = useSelector(state => state.pagesReducer.pages);
   const selected = useSelector(state => state.pagesReducer.selectedPage);
@@ -30,6 +30,12 @@ const WorkSpace = ({ location, match }) => {
     }} className={styles.close}>X</span>
   </div>);
   console.log(pages, selected)
+
+  useEffect(() => {
+    if (pages.length) {
+      history.push(`${match.url}/${pages[selected].path}`);
+    }
+  }, [pages, selected]);
 
   return <div className={styles.workspace}>
     <TabsBar
@@ -58,7 +64,7 @@ const WorkSpace = ({ location, match }) => {
                 case 'WELCOME_PAGE':
                   const welcomeIndex = findIndex(pages, { id: 'welcome_page_id' });
                   if (welcomeIndex > -1) {
-                    dispatch({ type: 'SET_PAGE', payload: { id: welcomeIndex } });
+                    dispatch({ type: 'SELECT_PAGE', payload: { id: welcomeIndex } });
                   } else {
                     dispatch({ type: 'ADD_AND_SELECT_PAGE', payload: {
                       id: 'welcome_page_id',
