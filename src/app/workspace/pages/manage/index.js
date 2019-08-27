@@ -9,6 +9,7 @@ const Manage = ({ match }) => {
         switch (match.params.type.toUpperCase()) {
           case 'USERS':
             return <Users />;
+            break;
           default:
             return <Redirect to='/app/welcome_page' />;
         }

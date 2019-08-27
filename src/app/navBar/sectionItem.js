@@ -12,7 +12,6 @@ const SectionItem = ({ title, to, icon, children, history, match }) => {
       type: 'ADD_AND_SELECT_PAGE',
       payload: { title, path: to },
     });
-    history.push(`${match.url}/${to}`);
   }
 
   return <div className={styles.item} onClick={onClick}>
