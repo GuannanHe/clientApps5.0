@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TabsBar from 'SL_UI/tabsBar';
 import { v4 } from 'uuid';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from './header';
 import Workspace from './workspace';
@@ -10,6 +10,7 @@ import { mainContainer } from './styles.scss';
 
 export default ({ match, location, history }) => {
   const dispatch = useDispatch();
+  const fetching = useSelector(state => state.pagesReducer.fetching);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_PAGES' });
@@ -18,6 +19,6 @@ export default ({ match, location, history }) => {
 
   return <div className={mainContainer}>
     <Header />
-    <Workspace />
+    { !fetching && <Workspace /> }
   </div>;
 }

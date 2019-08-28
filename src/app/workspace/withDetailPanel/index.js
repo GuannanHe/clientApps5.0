@@ -1,9 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  ReflexContainer,
-  ReflexSplitter,
-  ReflexElement
-} from 'react-reflex';
 
 import './styles.scss';
 
@@ -25,23 +20,12 @@ const Component = ({ pageContent, detailPanel }) => {
   useEffect(() => {
     const containerHeight = containerRef.current.getBoundingClientRect().height;
     setFlex(1 - detailPanelHeight/containerHeight);
-  }, [detailPanelHeight]);
+  }, [detailPanelHeight, containerRef]);
 
   return <div className='with-detail-main' ref={containerRef}>
-    <ReflexContainer orientation='horizontal'>
- 
-      <ReflexElement flex={flex}>
-        { React.createComponent(pageContent, { openDetail }) }
-      </ReflexElement>
-
-      <ReflexSplitter class='panel-splitter'/>
-
-      <ReflexElement>
-        { React.createComponent(detailComponent, { closeDetail }) }
-      </ReflexElement>
-
-    </ReflexContainer>
+    {React.cloneElement(pageContent, { openDetail })}
+    {React.cloneElement(detailPanel, { closeDetail })}
   </div>
 }
 
-export default props => <Component { ...props } />
+export default props => <Component {...props} />;

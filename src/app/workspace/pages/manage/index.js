@@ -12,6 +12,7 @@ const Manage = ({ match }) => {
             break;
           default:
             return <Redirect to='/app/welcome_page' />;
+            break;
         }
       } else {
         return <Redirect to='/app/welcome_page' />;

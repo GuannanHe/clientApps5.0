@@ -10,6 +10,7 @@ const initState = {
     title: 'Welcome to Snaplogic 5.0',
   }],
   selectedPage: 0,
+  fetching: true,
 }
 
 export const getPages = () => {
@@ -69,7 +70,7 @@ export default function pages(state = initState, action = {}) {
 
       return { ...state, pages: toRemove, selectedPage };
     case 'FETCH_PAGES':
-      return { ...state, pages: getPages() };
+      return { ...state, pages: getPages(), fetching: false };
     case 'FETCH_SELECTED_PAGES':
       return { ...state, selectedPage: getSelectedPage() };
     case 'SELECT_PAGE': 

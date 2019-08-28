@@ -9,8 +9,10 @@ const Monitor = ({ match }) => {
         switch (match.params.type.toUpperCase()) {
           case 'PIPELINE':
             return <Pipeline />;
+            break;
           default:
             return <div>monitor</div>;
+            break;
         }
       } else {
         return <div>monitor</div>;
