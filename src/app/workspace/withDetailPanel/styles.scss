@@ -1,9 +1,21 @@
 .with-detail-main {
   display: flex;
+  flex-direction: column;
   flex: 1;
+
 
   .panel-splitter {
     border: 1px solid black;
+  }
+
+  .detail {
+    transition: 0.5s all;
+    margin-top: auto;
+    max-height: 0;
+
+    &.open {
+      max-height: calc(100vh - 300px);
+    }
   }
 }
 

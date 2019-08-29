@@ -1,31 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import './styles.scss';
+import styles from './styles.scss';
 
-const Component = ({ pageContent, detailPanel }) => {
+const Component = ({ pageContent }) => {
   const [detailComponent, setDetailComponent] = useState(null);
-  const [detailPanelHeight, setDetailPanelHeight] = useState(0);
-  const [flex, setFlex] = useState(1);
-  const containerRef = useRef(null);
+  const [detailOpen, setDetailOpen] = useState(false);
 
   const closeDetail = () => {
-    setFlex(1);
+    console.log('close detail')
+    setDetailOpen(false);
   }
 
-  const openDetail = ({ component, panelHeight }) => {
+  const openDetail = ({ component }) => {
+    console.log('open detail')
     setDetailComponent(component);
-    setDetailPanelHeight(panelHeight);
+    setDetailOpen(true);
   }
 
-  useEffect(() => {
-    const containerHeight = containerRef.current.getBoundingClientRect().height;
-    setFlex(1 - detailPanelHeight/containerHeight);
-  }, [detailPanelHeight, containerRef]);
-
-  return <div className='with-detail-main' ref={containerRef}>
+  return <div className={styles.withDetailMain}>
     {React.cloneElement(pageContent, { openDetail })}
-    {React.cloneElement(detailPanel, { closeDetail })}
+
+    <div className={`${styles.detail} ${detailOpen ? styles.open : ''}`}>
+      { detailComponent !== null && React.cloneElement(detailComponent, { closeDetail })}
+    </div>
   </div>
 }
 
-export default props => <Component {...props} />;
+export default content => <Component pageContent={content} />;

@@ -32,7 +32,7 @@ const WorkSpace = ({ location, match, history }) => {
   console.log(pages, selected)
 
   useEffect(() => {
-    if (pages.length) {
+    if (pages.length && `${match.url}/${pages[selected].path}` !== location.pathname) {
       history.push(`${match.url}/${pages[selected].path}`);
     }
   }, [pages, selected]);
@@ -62,16 +62,6 @@ const WorkSpace = ({ location, match, history }) => {
                   return <Monitor />
                   break;
                 case 'WELCOME_PAGE':
-                  const welcomeIndex = findIndex(pages, { id: 'welcome_page_id' });
-                  if (welcomeIndex > -1) {
-                    dispatch({ type: 'SELECT_PAGE', payload: { id: welcomeIndex } });
-                  } else {
-                    dispatch({ type: 'ADD_AND_SELECT_PAGE', payload: {
-                      id: 'welcome_page_id',
-                      path: 'welcome_page',
-                      title: 'Welcome to Snaplogic 5.0',
-                    }});
-                  }
                   return <WelcomePage />;
                   break;
                 default:
