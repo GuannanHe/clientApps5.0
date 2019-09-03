@@ -75,6 +75,11 @@ export default function pages(state = initState, action = {}) {
       return { ...state, selectedPage: getSelectedPage() };
     case 'SELECT_PAGE': 
       return { ...state, selectedPage: setSelectedPage(action.payload.id) };
+    case 'PUSH_STATE':
+      const newState = { ...state };
+      const pageIndex = findIndex(state.pages, { id: action.payload.id });
+      newState.pages[pageIndex].states = action.payload.states;
+      return newState;
     default:
       return state;
   }

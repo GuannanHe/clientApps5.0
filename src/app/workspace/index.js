@@ -47,31 +47,27 @@ const WorkSpace = ({ location, match, history }) => {
       <NavBar />
       <div className={styles.mainArea}>
         <Route path={`${match.path}/:type`} component={({ match }) => {
-          // if (!find(pages, { path: location.pathname })) {
-          //   return <Redirect to='welcome_page' />;
-          // } else {
-            if (match.params.type) {
-              switch (match.params.type.toUpperCase()) {
-                case 'MANAGE':
-                  return <Manage />
-                  break;
-                case 'ASSET':
-                  return <Asset />
-                  break;
-                case 'MONITOR':
-                  return <Monitor />
-                  break;
-                case 'WELCOME_PAGE':
-                  return <WelcomePage />;
-                  break;
-                default:
-                  return <Redirect to='welcome_page' />;
-                  break;
-              }
-            } else {
-              return <Redirect to='welcome_page' />;
+          if (match.params.type) {
+            switch (match.params.type.toUpperCase()) {
+              case 'MANAGE':
+                return <Manage pageId={pages[selected].id} />
+                break;
+              case 'ASSET':
+                return <Asset />
+                break;
+              case 'MONITOR':
+                return <Monitor />
+                break;
+              case 'WELCOME_PAGE':
+                return <WelcomePage />;
+                break;
+              default:
+                return <Redirect to='welcome_page' />;
+                break;
             }
-          // }
+          } else {
+            return <Redirect to='welcome_page' />;
+          }
         }} />
       </div>
       <ToolBar />
