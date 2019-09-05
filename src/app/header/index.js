@@ -1,15 +1,17 @@
 import React from 'react';
 import Logo from 'Assets/LogoN.png';
 import { Icon, TextField } from 'SL_UI';
+import { useDispatch } from 'react-redux';
 
 import { logout } from 'Data/auth';
 
 import styles from './styles.scss';
 
 export default ({ history }) => {
+  const dispatch = useDispatch();
+
   const handleLogout = () => {
-    logout();
-    history.push('/login');
+    dispatch(logout(history));
   }
 
   return <div className={styles.header}>

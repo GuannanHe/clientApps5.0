@@ -30,6 +30,6 @@ export default ({ match, location, history }) => {
 
   return <div className={mainContainer}>
     <Header history={history} />
-    { !fetching && !sessionFetching && <Workspace /> }
+    { !fetching && !sessionFetching && !sessionError && <Workspace /> }
   </div>;
 }

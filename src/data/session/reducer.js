@@ -104,6 +104,8 @@ export default function sessionReducer(state = initState, action = {}) {
         updating: false,
         updateError: action.payload,
       };
+    case 'LOGOUT': 
+      return { ...state, authenticated: false };
     default:
       return state;
   }

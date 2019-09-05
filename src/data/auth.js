@@ -57,10 +57,15 @@ export const login = ({username, password}) => {
   }
 }
 
-export const logout = () => {
-  localStorage.removeItem(SLDBUSERNAME);
-  localStorage.removeItem(SL_TOKEN);
-  localStorage.removeItem(KEY_LOGIN_TIME_MILI);
-  localStorage.removeItem(KEY_SESSION_TIMEOUT_SECS);
-  axios.defaults.headers.common['Authorization'] = '';
+export const logout = (history) => {
+  return dispatch => {
+    localStorage.removeItem(SLDBUSERNAME);
+    localStorage.removeItem(SL_TOKEN);
+    localStorage.removeItem(KEY_LOGIN_TIME_MILI);
+    localStorage.removeItem(KEY_SESSION_TIMEOUT_SECS);
+    axios.defaults.headers.common['Authorization'] = '';
+    dispatch({ type: 'LOGOUT' });
+    history.push('/login');
+    return;
+  }
 }

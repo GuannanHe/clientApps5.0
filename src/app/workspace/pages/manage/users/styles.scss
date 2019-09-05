@@ -2,3 +2,11 @@
   height: 100%;
   overflow: auto;
 }
+
+.detail-container {
+  height: 300px;
+  border: 1px solid #000000;
+  display: flex;
+  jutify-content: center;
+  align-items: center;
+}
