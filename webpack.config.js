@@ -16,6 +16,7 @@ module.exports = {
       Assets: path.resolve(__dirname, 'src/images'),
       App: path.resolve(__dirname, 'src/app'),
       Context: path.resolve(__dirname, 'src/app/contexts'),
+      Data: path.resolve(__dirname, 'src/data'),
     },
   },
   module: {

@@ -2,6 +2,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  height: calc(100vh - 30px);
 
   a {
     text-decoration: none;
@@ -12,10 +13,12 @@
     display: flex;
     flex: 1;
     flex-direction: row;
+    height: calc(100% - 17px);
 
     .main-area {
       display: flex;
       flex: 1;
+      overflow: hidden;
     }
   }
 

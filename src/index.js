@@ -5,7 +5,9 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import reducer from './app/reducers';
+import { login, checkToken } from 'Data/auth';
+import { isEmpty } from 'lodash';
+import reducer from 'Data/reducers';
 import App from './app';
 import Login from './login';
 
@@ -18,7 +20,13 @@ ReactDOM.render(<Provider store={store}>
     <Router>
     <Switch>
       <Redirect exact from='/' to='/app' />
-      <Route path="/app" component={App} />
+      <Route path="/app" render={ props => {
+        if ( !isEmpty(checkToken()) ) {
+          return <App { ...props } />;
+        } else {
+          return <Redirect to='/login' />;
+        }
+      }} />
       <Route path="/login/" component={Login} />
       <Route component={() => <div>404</div>} />
     </Switch>
