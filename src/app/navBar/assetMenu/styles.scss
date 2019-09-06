@@ -8,6 +8,7 @@
   width: 250px;
   background: #E9F2F5;
   display: none;
+  z-index: 200;
 
   &:after,
   &:before {

@@ -13,7 +13,7 @@ const environment = process.env.NODE_ENV || 'dev';
 const hosts = {
   dev: 'https://stage.elastic.snaplogic.com',
 }
-console.log(hosts[environment])
+
 app.use('/api', proxy({ target: hosts[environment], changeOrigin: true }));
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js

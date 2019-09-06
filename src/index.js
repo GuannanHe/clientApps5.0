@@ -5,6 +5,8 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
+import 'Styles/global.scss';
+
 import { login, checkToken } from 'Data/auth';
 import { isEmpty } from 'lodash';
 import reducer from 'Data/reducers';

@@ -5,7 +5,6 @@ import TabsBar from 'SL_UI/tabsBar';
 import { useSelector, useDispatch } from 'react-redux';
 
 import NavBar from 'App/navBar';
-import ToolBar from 'App/toolBar';
 import Tab from './tab';
 import Manage from './pages/manage';
 import Asset from './pages/asset';
@@ -70,7 +69,6 @@ const WorkSpace = ({ location, match, history }) => {
           }
         }} />
       </div>
-      <ToolBar />
     </div>
   </div>
 }

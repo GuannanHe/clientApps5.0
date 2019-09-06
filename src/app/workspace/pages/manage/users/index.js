@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { find } from 'lodash';
-import { TextField } from 'SL_UI';
+import { TextField, Icon } from 'SL_UI';
 
+import ToolBar from 'App/toolBar';
 import { fetchUserList } from 'Data/users';
 import withDetailPanel from 'App/workspace/withDetailPanel';
 import UserDetail from './userDetail';
@@ -18,6 +19,13 @@ const User = ({ openDetail, pageId }) => {
     dispatch(fetchUserList());
   }, []);
 
+  const buttons = [
+    <Icon.Notification />,
+    <Icon.Email />,
+    <Icon.Help />,
+    <Icon.Logout/>,
+  ];
+
   return <div className={styles.container} >
     {/*<TextField
       onChange={event => dispatch({
@@ -30,9 +38,10 @@ const User = ({ openDetail, pageId }) => {
     {
       users.map(user => <div key={user.username}>
         {`username: ${user.username}`}
-        <button onClick={() => openDetail({component: <UserDetail name={user.username} />})}>o</button>
+        <button onClick={() => openDetail({component: <UserDetail name={user.username} />})}>open</button>
       </div>)
     }
+    <ToolBar buttons={buttons} />
   </div>
 }
 
